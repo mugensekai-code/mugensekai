@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>実績 ｜ ムゲン劇場</title>
+<meta name="description" content="歴史エッセイスト・樽瀬川真人の実績・活動歴。">
+
+<!-- サイト共通テーマ -->
+<link rel="stylesheet" href="./css/theme.css">
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 100vh;
+    padding: 0 20px 160px;
+  }
+
+  .bg-layer {
+    position: fixed; inset: 0;
+    background-image: url('./img/bg3.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    transform: scale(1.05);
+    animation: subtle-drift 30s ease-in-out infinite alternate;
+  }
+  @keyframes subtle-drift {
+    from { transform: scale(1.05) translate(0, 0); }
+    to   { transform: scale(1.08) translate(-1%, 0.5%); }
+  }
+
+  .bg-overlay {
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 50%, rgba(12,10,8,0.2) 0%, rgba(12,10,8,0.75) 100%),
+      linear-gradient(to bottom, rgba(12,10,8,0.5) 0%, rgba(12,10,8,0.1) 40%, rgba(12,10,8,0.6) 100%);
+    z-index: 1;
+  }
+
+  .vignette {
+    position: fixed; inset: 0; z-index: 2;
+    box-shadow: inset 0 0 180px rgba(0,0,0,0.7);
+    pointer-events: none;
+  }
+
+  .content {
+    position: relative; z-index: 10;
+    width: min(640px, 90vw);
+    padding-top: 14vh;
+    background: rgba(12, 10, 8, 0.55);
+    border: 0.5px solid var(--gold-dim);
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 48px;
+  }
+
+  /* ページタイトル */
+  .page-title {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.45em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: rise-in 1.2s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+  }
+
+  .page-title-ja {
+    font-family: var(--font-body);
+    font-size: 26px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--cream);
+    margin-bottom: 4px;
+    opacity: 0;
+    animation: rise-in 1.2s cubic-bezier(0.16,1,0.3,1) 0.4s forwards;
+  }
+
+  .title-rule {
+    width: 100%;
+    height: 0.5px;
+    background: linear-gradient(to right, var(--gold-dim), transparent);
+    margin: 20px 0 40px;
+    opacity: 0;
+    animation: rise-in 1.2s cubic-bezier(0.16,1,0.3,1) 0.5s forwards;
+  }
+
+  /* セクション */
+  .section {
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: rise-in 1.2s cubic-bezier(0.16,1,0.3,1) forwards;
+  }
+  .section:nth-child(1) { animation-delay: 0.6s; }
+  .section:nth-child(2) { animation-delay: 0.7s; }
+  .section:nth-child(3) { animation-delay: 0.8s; }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid var(--gold-dim);
+  }
+
+  .section p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.9;
+    letter-spacing: 0.05em;
+    color: var(--cream-dim);
+  }
+
+  .section a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 0.5px solid var(--gold-dim);
+    padding-bottom: 1px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+  .section a:hover {
+    color: var(--gold-light);
+    border-color: var(--gold);
+  }
+
+  /* 活動歴タイムライン */
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 0 24px;
+    padding: 20px 0;
+    border-bottom: 0.5px solid rgba(200,169,110,0.1);
+    opacity: 0;
+    animation: rise-in 1.2s cubic-bezier(0.16,1,0.3,1) forwards;
+  }
+  .timeline-item:nth-child(1)  { animation-delay: 0.8s; }
+  .timeline-item:nth-child(2)  { animation-delay: 0.9s; }
+  .timeline-item:nth-child(3)  { animation-delay: 1.0s; }
+  .timeline-item:nth-child(4)  { animation-delay: 1.1s; }
+  .timeline-item:nth-child(5)  { animation-delay: 1.2s; }
+  .timeline-item:nth-child(6)  { animation-delay: 1.3s; }
+  .timeline-item:nth-child(7)  { animation-delay: 1.4s; }
+  .timeline-item:nth-child(8)  { animation-delay: 1.5s; }
+
+  .timeline-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 2px;
+  }
+
+  .timeline-year {
+    font-family: var(--font-display);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+  }
+
+  .timeline-tag {
+    font-family: var(--font-display);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    border: 0.5px solid var(--gold);
+    padding: 2px 8px;
+    text-align: center;
+    width: fit-content;
+  }
+
+  .timeline-body {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+    color: var(--cream-dim);
+  }
+
+  .timeline-body a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 0.5px solid var(--gold-dim);
+    padding-bottom: 1px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+  .timeline-body a:hover {
+    color: var(--gold-light);
+    border-color: var(--gold);
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+<div class="bg-overlay"></div>
+<div class="vignette"></div>
+
+<div class="corner corner-tl"></div>
+<div class="corner corner-tr"></div>
+<div class="corner corner-bl"></div>
+<div class="corner corner-br"></div>
+<div class="rule-top"></div>
+<div class="rule-bottom"></div>
+
+<div class="content">
+
+  <p class="page-title">Achievements</p>
+  <h1 class="page-title-ja">実績</h1>
+  <div class="title-rule"></div>
+
+  <!-- 概要 -->
+  <div class="section">
+    <p>2017年から歴史・文化・旅行系の記事を中心に執筆をスタート。<br>
+    2020年には小学館『<a href="https://intojapanwaraku.com/author/tarusegawa/" target="_blank">和樂web</a>』で鎌倉時代の記事を担当し、
+    2021年には『<a href="https://purakara.com/archives/author/mugensekaif8a750d731" target="_blank">横須賀ぷらから通信</a>』で三浦一族の史跡巡りを紹介。<br>
+    2022年に仲間と一緒に「<a href="https://sites.google.com/view/nam80000/" target="_blank">関東かまくら御家人倶楽部</a>」を立ち上げ、同人イベントを開催。<br>
+    以降、伊豆の国市と協力して講演会を開き、鎌倉時代の人々や文化の魅力を伝え続けている。</p>
+  </div>
+
+  <!-- 活動歴 -->
+  <div class="section">
+    <p class="section-title">活動歴</p>
+
+    <ul class="timeline">
+
+      <li class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-year">2025年09月</span>
+          <span class="timeline-tag">かま倶楽</span>
+        </div>
+        <p class="timeline-body">静岡県伊豆の国市文化財講演会
+          「<a href="https://sites.google.com/view/nam80000/kouenkai/izunokuni03" target="_blank">北条政子を巡る人間模様</a>」を
+          関東かまくら御家人倶楽部として伊豆の国市と共催。</p>
+      </li>
+
+      <li class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-year">2024年08月</span>
+          <span class="timeline-tag">かま倶楽</span>
+        </div>
+        <p class="timeline-body">静岡県伊豆の国市文化財講演会
+          「<a href="https://sites.google.com/view/nam80000/kouenkai/izunokuni02" target="_blank">鎌倉武士の日常生活</a>」を
+          関東かまくら御家人倶楽部として伊豆の国市と共催。</p>
+      </li>
+
+      <li class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-year">2023年07月</span>
+          <span class="timeline-tag">かま倶楽</span>
+        </div>
+        <p class="timeline-body">静岡県伊豆の国市文化財講演会
+          「<a href="https://sites.google.com/view/nam80000/kouenkai/izunokuni" target="_blank">北条三代の栄華と夢の跡</a>」を
+          関東かまくら御家人倶楽部として伊豆の国市と共催。</p>
+      </li>
+
+      <li class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-year">2022年11月</span>
+          <span class="timeline-tag">講演</span>
+        </div>
+        <p class="timeline-body">イオンモール各務原にて、
+          講演会「<a href="https://note.com/shibaigoya/n/n4ee27efac79e?app_launch=false" target="_blank">承久の乱の13人</a>」に登壇。</p>
+      </li>
+
+      <li class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-year">2022年07月</span>
+          <span class="timeline-tag">かま倶楽</span>
+        </div>
+        <p class="timeline-body">鎌倉時代を盛り上げる有志の会「<a href="https://sites.google.com/view/nam80000/" target="_blank">関東かまくら御家人倶楽部</a>」を結成し、
+          同人イベント「イザ鎌！」を開催。</p>
+      </li>
+
+      <li class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-year">2021年</span>
+          <span class="timeline-tag">執筆</span>
+        </div>
+        <p class="timeline-body">三浦半島のお散歩情報サイト『<a href="https://purakara.com/archives/author/mugensekaif8a750d731" target="_blank">横須賀ぷらから通信</a>』にて、
+          三浦一族の史跡巡り記事を担当。</p>
+      </li>
+
+      <li class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-year">2020年</span>
+          <span class="timeline-tag">執筆</span>
+        </div>
+        <p class="timeline-body">小学館のオウンドメディア『和樂web』にて、鎌倉時代を中心とした記事の執筆開始。<br>
+          <a href="https://intojapanwaraku.com/author/tarusegawa/" target="_blank">『和楽web』（樽瀬川）</a> /
+          <a href="https://intojapanwaraku.com/author/miura/" target="_blank">『和楽web』（鎌倉殿の13人予習シリーズ）</a></p>
+      </li>
+
+      <li class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-year">2017年</span>
+          <span class="timeline-tag">執筆</span>
+        </div>
+        <p class="timeline-body">各種webメディアでの執筆活動を開始。</p>
+      </li>
+
+    </ul>
+  </div>
+
+</div>
+
+<p class="site-footer">© 2025 · ムゲン劇場
+    Edgar Degas, <i>On Stage I</i>, 
+  <a href="https://www.nga.gov/artworks/6482-stage-i" target="_blank">National Gallery</a> 
+</p>
+
+<script src="./js/theme.js" defer></script>
+<script src="./js/nav.js" defer></script>
+
+</body>
+</html>
